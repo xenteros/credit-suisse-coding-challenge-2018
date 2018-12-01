@@ -1,5 +1,6 @@
 package in.blockchain.we.trust.controller;
 
+import in.blockchain.we.trust.blockchain.Income;
 import in.blockchain.we.trust.blockchain.Promise;
 import in.blockchain.we.trust.blockchain.PromiseType;
 import in.blockchain.we.trust.dto.ClientDto;
@@ -54,5 +55,17 @@ public class ClientController {
     }
 
 
+    @GetMapping("/api/buy/trial")
+    public String trial(Model model) {
+        blockchainService.addStoreable(new Income(100L, clientService.getLoggedClient().getUuid()));
+        return "buy";
+    }
+
+
+    @GetMapping("/api/buy/full")
+    public String full(Model model) {
+        blockchainService.addStoreable(new Income(10000L, clientService.getLoggedClient().getUuid()));
+        return "buy";
+    }
 
 }

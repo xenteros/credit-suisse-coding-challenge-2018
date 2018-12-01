@@ -69,13 +69,14 @@ public class Chain {
 
 
     private void createPayouts(Income income) {
-        chain.stream()
+        List<Payout> collect = chain.stream()
                 .map(b -> new Data(b.getData()))
                 .filter(d -> d.getDataType() == DataType.PROMISE)
                 .map(Data::getStoreable)
                 .map(s -> (Promise) s)
                 .map(p -> new Payout(income, p))
-                .forEach(p -> addBlock(new Block(new Data(p), getLastHash())));
+                .collect(Collectors.toList());
+        collect.forEach(p -> addBlock(new Block(new Data(p), getLastHash())));
     }
 
     private Block getLastBlock() {

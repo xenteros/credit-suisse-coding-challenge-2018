@@ -32,7 +32,8 @@ public class PromisePayoutController {
         model.addAttribute("promises",
                 blockchainService.getEmployeePromises(employeeService.getLoggedUser().getUuid())
                         .stream()
-                        .map(p -> new PromiseDto(clientService.getClientName(p.getUuid()), p.getType().getPercentage() + "%")).collect(Collectors.toList()));
+                        .peek(System.out::println)
+                        .map(p -> new PromiseDto(clientService.getClientName(p.getClientUuid()), p.getType().getPercentage() + "%")).collect(Collectors.toList()));
         return "promises";
     }
 
@@ -41,7 +42,7 @@ public class PromisePayoutController {
         model.addAttribute("payouts",
                 blockchainService.getEmployeePayouts(employeeService.getLoggedUser().getUuid())
                         .stream().map(payout -> new PayoutDto(payout.getTime(),
-                        clientService.getClientName(payout.getClientUuid()), "" + payout.getAmount())));
+                        clientService.getClientName(payout.getClientUuid()), "" + payout.getAmount())).collect(Collectors.toList()));
         return "payouts";
     }
 
