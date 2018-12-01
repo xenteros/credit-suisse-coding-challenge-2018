@@ -56,14 +56,27 @@ public class Chain {
                 .collect(Collectors.toList());
     }
 
+
+    public List<Payout> getEmployeesPayouts(String employeeUuid) {
+        return chain.stream()
+                .map(b -> new Data(b.getData()))
+                .filter(d -> d.getDataType() == DataType.PAYOUT)
+                .map(Data::getStoreable)
+                .map(s -> (Payout) s)
+                .filter(p -> p.getEmployeeUuid().equals(employeeUuid))
+                .collect(Collectors.toList());
+    }
+
+
     private void createPayouts(Income income) {
-        chain.stream()
+        List<Payout> collect = chain.stream()
                 .map(b -> new Data(b.getData()))
                 .filter(d -> d.getDataType() == DataType.PROMISE)
                 .map(Data::getStoreable)
                 .map(s -> (Promise) s)
                 .map(p -> new Payout(income, p))
-                .forEach(p -> addBlock(new Block(new Data(p), getLastHash())));
+                .collect(Collectors.toList());
+        collect.forEach(p -> addBlock(new Block(new Data(p), getLastHash())));
     }
 
     private Block getLastBlock() {

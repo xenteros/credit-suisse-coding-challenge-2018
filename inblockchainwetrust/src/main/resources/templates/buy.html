@@ -1,8 +1,8 @@
 <!DOCTYPE HTML>
-<html xmlns:th="http://www.thymeleaf.org">
+<html>
 <head>
 
-    <title>Clients</title>
+    <title>Add Client</title>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
 
     <link href="/../css/bootstrap.min.css" rel="stylesheet"/>
@@ -13,21 +13,11 @@
 <body>
 <div class="container">
 
-    <h1>Promises</h1>
+    <h1>What would you like to buy?</h1>
 
-    <div class="row">
-        <div class="col-md-2"></div>
-        <div class="col-md-4"><b>Client Name</b></div>
-        <div class="col-md-4"><b>Amount</b></div>
-        <div class="col-md-2"></div>
-    </div>
-    <div clas="row" th:each="promise: ${promises}">
-        <div class="col-md-2"></div>
-        <div class="col-md-4"><span th:text="${promise.clientName}"></span></div>
-        <div class="col-md-4"><span th:text="${promise.provision}"></span></div>
-        <div class="col-md-2"></div>
+    <a href="/api/buy/trial">Trial</a>
+    <a href="/api/buy/full">Subscription</a>
 
-    </div>
 
 </div>
 

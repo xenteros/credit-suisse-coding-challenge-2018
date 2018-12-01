@@ -13,20 +13,17 @@
 <body>
 <div class="container">
 
-    <h1>Promises</h1>
+    <h1>Payouts</h1>
 
     <div class="row">
-        <div class="col-md-2"></div>
-        <div class="col-md-4"><b>Client Name</b></div>
+        <div class="col-md-4"><b>Date</b></div>
+        <div class="col-md-4"><b>Client</b></div>
         <div class="col-md-4"><b>Amount</b></div>
-        <div class="col-md-2"></div>
     </div>
-    <div clas="row" th:each="promise: ${promises}">
-        <div class="col-md-2"></div>
-        <div class="col-md-4"><span th:text="${promise.clientName}"></span></div>
-        <div class="col-md-4"><span th:text="${promise.provision}"></span></div>
-        <div class="col-md-2"></div>
-
+    <div clas="row" th:each="payout: ${payouts}">
+        <div class="col-md-4"><span th:text="${payout.date}"></span></div>
+        <div class="col-md-4"><span th:text="${payout.client}"></span></div>
+        <div class="col-md-4"><span th:text="${payout.amount}"></span></div>
     </div>
 
 </div>

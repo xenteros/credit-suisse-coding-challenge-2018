@@ -18,6 +18,10 @@ public class BlockchainService {
         return chain.getEmployeesPromises(employeeUuid);
     }
 
+    public List<Payout> getEmployeePayouts(String employeeUuid) {
+        return chain.getEmployeesPayouts(employeeUuid);
+    }
+
 
 
 

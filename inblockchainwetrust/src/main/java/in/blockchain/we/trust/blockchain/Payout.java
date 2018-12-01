@@ -14,11 +14,19 @@ public class Payout implements Storeable {
     private String incomeUuid;
     private String promiseUuid;
     private Long amount;
+    private String employeeUuid;
+    private String clientUuid;
 
     public Payout(Income income, Promise promise) {
         this.incomeUuid = income.getUuid();
         this.promiseUuid = promise.getUuid();
         this.amount = (long) (1.0 * income.getAmount() * promise.getType().getPercentage() / 100);
+        this.employeeUuid = promise.getEmployeeUuid();
+        this.clientUuid = income.getClientUuid();
+    }
+
+    public String getClientUuid() {
+        return clientUuid;
     }
 
     public String getUuid() {
@@ -39,6 +47,10 @@ public class Payout implements Storeable {
 
     public Long getAmount() {
         return amount;
+    }
+
+    public String getEmployeeUuid() {
+        return employeeUuid;
     }
 
     @Override

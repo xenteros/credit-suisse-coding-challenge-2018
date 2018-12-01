@@ -5,6 +5,14 @@ public class PromiseDto {
     private String clientName;
     private String provision;
 
+    public PromiseDto() {
+    }
+
+    public PromiseDto(String clientName, String provision) {
+        this.clientName = clientName;
+        this.provision = provision;
+    }
+
     public String getClientName() {
         return clientName;
     }
