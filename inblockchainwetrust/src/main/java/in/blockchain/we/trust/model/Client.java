@@ -9,14 +9,24 @@ public class Client {
 
     private String uuid = UUID.randomUUID().toString();
     private String name;
+    private String contactPerson;
+    private String email;
 
-    public Client(String uuid, String name) {
-        this.uuid = uuid;
-        this.name = name;
+    public Client() {
     }
 
-    public Client(String name) {
+    public Client(String name, String contactPerson, String email) {
         this.name = name;
+        this.contactPerson = contactPerson;
+        this.email = email;
+    }
+
+    public String getContactPerson() {
+        return contactPerson;
+    }
+
+    public String getEmail() {
+        return email;
     }
 
     public String getUuid() {

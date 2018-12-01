@@ -12,7 +12,8 @@ import java.util.UUID;
 public class Promise implements Storeable {
 
     private String uuid = UUID.randomUUID().toString();
-    private String time = LocalDateTime.now().format(DateTimeFormatter.ofPattern("yyyy MM dd"));    private PromiseType type;
+    private String time = LocalDateTime.now().format(DateTimeFormatter.ofPattern("yyyy MM dd"));
+    private PromiseType type;
     private String clientUuid;
     private String employeeUuid;
 

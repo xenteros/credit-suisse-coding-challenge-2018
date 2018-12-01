@@ -2,6 +2,7 @@ package in.blockchain.we.trust.blockchain;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 import static java.util.stream.Collectors.joining;
 
@@ -35,14 +36,38 @@ public class Chain {
             this.chain.remove(this.chain.size() - 1);
             throw new RuntimeException("Block doesn't match the blockchain");
         }
-    }
-
-    public Block getLastBlock() {
-        return chain.isEmpty() ? null : chain.get(chain.size() - 1);
+        Data data = new Data(block.getData());
+        if (data.getDataType() == DataType.INCOME) {
+            createPayouts((Income) data.getStoreable());
+        }
     }
 
     public String getLastHash() {
         return getLastBlock() == null ? "" : getLastBlock().getHash();
+    }
+
+    public List<Promise> getEmployeesPromises(String employeeUuid) {
+        return chain.stream()
+                .map(b -> new Data(b.getData()))
+                .filter(d -> d.getDataType() == DataType.PROMISE)
+                .map(Data::getStoreable)
+                .map(s -> (Promise) s)
+                .filter(p -> p.getEmployeeUuid().equals(employeeUuid))
+                .collect(Collectors.toList());
+    }
+
+    private void createPayouts(Income income) {
+        chain.stream()
+                .map(b -> new Data(b.getData()))
+                .filter(d -> d.getDataType() == DataType.PROMISE)
+                .map(Data::getStoreable)
+                .map(s -> (Promise) s)
+                .map(p -> new Payout(income, p))
+                .forEach(p -> addBlock(new Block(new Data(p), getLastHash())));
+    }
+
+    private Block getLastBlock() {
+        return chain.isEmpty() ? null : chain.get(chain.size() - 1);
     }
 
     @Override
