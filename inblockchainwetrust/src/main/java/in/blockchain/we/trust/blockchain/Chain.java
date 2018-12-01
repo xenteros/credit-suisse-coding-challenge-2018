@@ -56,6 +56,18 @@ public class Chain {
                 .collect(Collectors.toList());
     }
 
+
+    public List<Payout> getEmployeesPayouts(String employeeUuid) {
+        return chain.stream()
+                .map(b -> new Data(b.getData()))
+                .filter(d -> d.getDataType() == DataType.PAYOUT)
+                .map(Data::getStoreable)
+                .map(s -> (Payout) s)
+                .filter(p -> p.getEmployeeUuid().equals(employeeUuid))
+                .collect(Collectors.toList());
+    }
+
+
     private void createPayouts(Income income) {
         chain.stream()
                 .map(b -> new Data(b.getData()))

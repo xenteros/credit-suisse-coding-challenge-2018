@@ -48,5 +48,11 @@ public class ClientController {
         return "clients";
     }
 
+    @GetMapping("/views/buy")
+    public String buy(Model model) {
+        return "buy";
+    }
+
+
 
 }
