@@ -34,7 +34,12 @@ public class Client {
 
     @Override
     public boolean equals(Object obj) {
-        return Objects.equals(this, obj);
+        if (!(obj instanceof Client)) {
+            return false;
+        }
+        Client that = (Client) obj;
+
+        return Objects.equals(this.getUuid(), that.getUuid());
     }
 
     @Override

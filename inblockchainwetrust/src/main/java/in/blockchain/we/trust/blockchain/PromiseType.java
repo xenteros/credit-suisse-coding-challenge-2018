@@ -1,8 +1,7 @@
-package in.blockchain.we.trust.model;
+package in.blockchain.we.trust.blockchain;
 
 public enum PromiseType {
     FIVE(5), TEN(10);
-
 
     private int percentage;
 

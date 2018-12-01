@@ -48,7 +48,12 @@ public class Employee {
 
     @Override
     public boolean equals(Object obj) {
-        return Objects.equals(this, obj);
+        if (!(obj instanceof Employee)) {
+            return false;
+        }
+        Employee that = (Employee) obj;
+
+        return Objects.equals(this.getUuid(), that.getUuid());
     }
 
     @Override

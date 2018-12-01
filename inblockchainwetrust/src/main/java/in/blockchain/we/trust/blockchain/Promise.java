@@ -1,16 +1,18 @@
-package in.blockchain.we.trust.model;
+package in.blockchain.we.trust.blockchain;
 
 import com.google.gson.Gson;
+import in.blockchain.we.trust.model.Client;
+import in.blockchain.we.trust.model.Employee;
 
 import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.Objects;
 import java.util.UUID;
 
-public class Promise {
+public class Promise implements Storeable {
 
     private String uuid = UUID.randomUUID().toString();
-    private LocalDateTime localDateTime = LocalDateTime.now();
-    private PromiseType type;
+    private String time = LocalDateTime.now().format(DateTimeFormatter.ofPattern("yyyy MM dd"));    private PromiseType type;
     private String clientUuid;
     private String employeeUuid;
 
@@ -24,8 +26,8 @@ public class Promise {
         return uuid;
     }
 
-    public LocalDateTime getLocalDateTime() {
-        return localDateTime;
+    public String getTime() {
+        return time;
     }
 
     public PromiseType getType() {
@@ -47,13 +49,23 @@ public class Promise {
 
     @Override
     public boolean equals(Object obj) {
-        return Objects.equals(this, obj);
+        if (!(obj instanceof Promise)) {
+            return false;
+        }
+        Promise that = (Promise) obj;
+
+        return Objects.equals(this.getUuid(), that.getUuid());
     }
 
     @Override
     public String toString() {
         Gson gson = new Gson();
         return gson.toJson(this);
+    }
+
+    @Override
+    public DataType getDataType() {
+        return DataType.PROMISE;
     }
 }
 

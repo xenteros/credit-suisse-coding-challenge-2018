@@ -1,13 +1,16 @@
-package in.blockchain.we.trust.model;
+package in.blockchain.we.trust.blockchain;
 
 import com.google.gson.Gson;
 
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.Objects;
 import java.util.UUID;
 
-public class Payout {
+public class Payout implements Storeable {
 
     private String uuid = UUID.randomUUID().toString();
+    private String time = LocalDateTime.now().format(DateTimeFormatter.ofPattern("yyyy MM dd"));
     private String incomeUuid;
     private String promiseUuid;
     private Long amount;
@@ -20,6 +23,10 @@ public class Payout {
 
     public String getUuid() {
         return uuid;
+    }
+
+    public String getTime() {
+        return time;
     }
 
     public String getIncomeUuid() {
@@ -41,13 +48,23 @@ public class Payout {
 
     @Override
     public boolean equals(Object obj) {
-        return Objects.equals(this, obj);
+        if (!(obj instanceof Payout)) {
+            return false;
+        }
+        Payout that = (Payout) obj;
+
+        return Objects.equals(this.getUuid(), that.getUuid());
     }
 
     @Override
     public String toString() {
         Gson gson = new Gson();
         return gson.toJson(this);
+    }
+
+    @Override
+    public DataType getDataType() {
+        return DataType.PAYOUT;
     }
 }
 
