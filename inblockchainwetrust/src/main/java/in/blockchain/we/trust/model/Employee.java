@@ -10,19 +10,16 @@ public class Employee {
     private String uuid = UUID.randomUUID().toString();
     private String name;
     private String email;
-    private transient String password;
 
-    public Employee(String uuid, String name, String email, String password) {
+    public Employee(String uuid, String name, String email) {
         this.uuid = uuid;
         this.name = name;
         this.email = email;
-        this.password = password;
     }
 
-    public Employee(String name, String email, String password) {
+    public Employee(String name, String email) {
         this.name = name;
         this.email = email;
-        this.password = password;
     }
 
     public String getUuid() {
@@ -37,9 +34,6 @@ public class Employee {
         return email;
     }
 
-    public String getPassword() {
-        return password;
-    }
 
     @Override
     public int hashCode() {

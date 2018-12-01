@@ -2,6 +2,10 @@ package in.blockchain.we.trust.service;
 
 import in.blockchain.we.trust.dto.ClientDto;
 import in.blockchain.we.trust.model.Client;
+import in.blockchain.we.trust.security.Role;
+import in.blockchain.we.trust.security.UserDetailsImpl;
+import in.blockchain.we.trust.security.UserDetailsServiceImpl;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
@@ -10,7 +14,12 @@ import java.util.List;
 @Service
 public class ClientService {
 
-    private Client loggedClient;
+    private UserDetailsServiceImpl userDetailsService;
+
+    public void setUserDetailsService(UserDetailsServiceImpl userDetailsService) {
+        this.userDetailsService = userDetailsService;
+    }
+
     private List<Client> clientList = new ArrayList<>();
 
     public List<Client> getClients() {
@@ -18,14 +27,17 @@ public class ClientService {
     }
 
     public Client getLoggedClient() {
-        return loggedClient;
+        Object principal = SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+        UserDetailsImpl userDetails = (UserDetailsImpl) principal;
+        if (userDetails.getRole() == Role.CLIENT) {
+            return userDetails.getClient();
+        }
+        return null;
     }
 
     public Client addClient(ClientDto clientDto) {
         Client client = clientDto.toClient();
-        if (this.clientList.isEmpty()) {
-            this.loggedClient = client;
-        }
+        userDetailsService.addClient(client);
         this.clientList.add(client);
         return client;
     }
