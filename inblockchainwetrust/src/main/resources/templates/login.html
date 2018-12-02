@@ -3,13 +3,44 @@
 <head>
     <title>Registration</title>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+
+    <link href="/../css/bootstrap.min.css" rel="stylesheet"/>
+    <link href="/../css/bootstrap-datetimepicker.css" rel="stylesheet"/>
+    <style type="text/css"/>
+    <link rel="stylesheet" type="text/css" href="/../css/styles.css" />
+
 </head>
 <body>
-<h1>Form</h1>
-<form action="users/login" method="post">
-    <div>User Name : <input type="text" name="username"/></div>
-    <div>Password: <input type="text" name="password"/></div>
-    <div><input type="submit" value="Sign In"/></div>
-</form>
+<header>
+    <div class="container-fluid" style="background-color: #2D4464;">
+        <div class="row" style="display: flex; align-items: center;">
+            <div class="col-12 col-md-8 col-md-offset-2" style="text-align: center;">
+                <img alt="logo" src="/../images/logo_big.png" style="margin-top: 40px; margin-bottom: 40px;"/>
+            </div>
+        </div>
+    </div>
+</header>
+
+<div class="container">
+    <div class="row">
+        <div class="col-12 col-md-5 col-md-offset-4 grey-background no-float"
+             style="verical-align: middle; padding: 80px 50px;">
+
+            <form action="users/login" method="post">
+                <div class="form-group">
+                    <input type="text" class="form-control" name="username" placeholder="User Name" style="font-size: 24px; font-family: 'Montserrat'; height: 50px;"/>
+                </div>
+                <div class="form-group" style="margin-top: 20px">
+                    <input type="text" class="form-control" name="password" placeholder="Password" style="font-size: 24px; font-family: 'Montserrat'; height: 50px;"/>
+                </div>
+
+                <!--<div><input type="submit" value="Sign In"/></div>-->
+                <div style="text-align: center; margin-top: -10px">
+                    <button type="submit" class="btn btn-my">Login</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
 </body>
 </html>

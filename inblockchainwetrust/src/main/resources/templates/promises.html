@@ -8,24 +8,33 @@
     <link href="/../css/bootstrap.min.css" rel="stylesheet"/>
     <link href="/../css/bootstrap-datetimepicker.css" rel="stylesheet"/>
     <style type="text/css"/>
+    <link rel="stylesheet" type="text/css" href="/../css/styles.css" />
 
 </head>
 <body>
-<div class="container">
-
-    <h1>Promises</h1>
-
-    <div class="row">
-        <div class="col-md-2"></div>
-        <div class="col-md-4"><b>Client Name</b></div>
-        <div class="col-md-4"><b>Amount</b></div>
-        <div class="col-md-2"></div>
+<header>
+    <div class="container-fluid" style="background-color: #2D4464;">
+        <div class="row" style="display: flex; align-items: center;">
+            <div class="col-12 col-md-2 col-md-offset-2">
+                <a href="/../home"><img alt="logo" src="/../images/logo.png" style="margin-top: 20px; margin-bottom: 20px;"/></a>
+            </div>
+            <div class="col-12 col-md-1 col-md-offset-5">
+                <a href="/../users/logout" class="btn btn-logout">LOG OUT</a>
+            </div>
+        </div>
     </div>
-    <div clas="row" th:each="promise: ${promises}">
-        <div class="col-md-2"></div>
-        <div class="col-md-4"><span th:text="${promise.clientName}"></span></div>
-        <div class="col-md-4"><span th:text="${promise.provision}"></span></div>
-        <div class="col-md-2"></div>
+</header>
+<div class="container grey-background">
+
+    <h1 class="title">Promises</h1>
+
+    <div class="row" style="height: auto; display: contents;">
+        <div class="col-md-6"><b style="font-family: 'Montserrat'; font-size: 18px;">Client Name</b></div>
+        <div class="col-md-6"><b style="font-family: 'Montserrat'; font-size: 18px;">Amount</b></div>
+    </div>
+    <div clas="row" style="height: auto; display: contents;" th:each="promise: ${promises}">
+        <div class="col-md-6"><span th:text="${promise.clientName}"></span></div>
+        <div class="col-md-6"><span th:text="${promise.provision}"></span></div>
 
     </div>
 

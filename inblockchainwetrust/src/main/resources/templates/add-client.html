@@ -8,37 +8,49 @@
     <link href="/../css/bootstrap.min.css" rel="stylesheet"/>
     <link href="/../css/bootstrap-datetimepicker.css" rel="stylesheet"/>
     <style type="text/css"/>
+    <link rel="stylesheet" type="text/css" href="/../css/styles.css" />
+
 
 </head>
 <body>
-<div class="container-fluid" style="background-color: #2D4464">
-    <div class="col-12 col-md-2 col-md-offset-2">
-        <img alt="logo" src="/../images/logo.png" style="margin-top: 20px; margin-bottom: 20px;"/>
+
+<header>
+    <div class="container-fluid" style="background-color: #2D4464;">
+        <div class="row" style="display: flex; align-items: center;">
+            <div class="col-12 col-md-2 col-md-offset-2">
+                <a href="/../home"><img alt="logo" src="/../images/logo.png" style="margin-top: 20px; margin-bottom: 20px;"/></a>
+            </div>
+            <div class="col-12 col-md-1 col-md-offset-5">
+                <a href="/../users/logout" class="btn btn-logout">LOGOUT</a>
+            </div>
+        </div>
     </div>
-    <div class="col-12 col-md-2 col-md-offset-4">
-        <img alt="logo" src="/../images/logo.png" style="margin-top: 20px; margin-bottom: 20px;"/>
-    </div>
-</div>
+</header>
+
 <div class="container">
+    <div class="row">
+        <div class="col-12 col-md-8 col-md-offset-2 grey-background no-float">
 
-    <h1>Add Client</h1>
+            <h1 class="title">Add Client</h1>
 
-    <form action="#" th:action="@{/api/clients}" th:object="${client}" method="post">
-        <div class="form-group">
-            <label>Name:</label>
-            <input type="text" class="form-control" th:field="*{name}"/>
-        </div>
-        <div class="form-group">
-            <label>Contact Person:</label>
-            <input type="text" class="form-control" th:field="*{contactPerson}"/>
-        </div>
-        <div class="form-group">
-            <label>Email:</label>
-            <input type="email" class="form-control" th:field="*{email}"/>
-        </div>
-        <button type="submit" class="btn btn-default">Submit</button>
-    </form>
+            <form action="#" th:action="@{/api/clients}" th:object="${client}" method="post">
+                <div class="form-group">
+                    <input type="text" class="form-control" th:field="*{name}" placeholder="Name" style="font-size: 24px; font-family: 'Montserrat'; height: 50px;"/>
+                </div>
+                <div class="form-group">
+                    <input type="text" class="form-control" th:field="*{contactPerson}" placeholder="Contact Person" style="font-size: 24px; font-family: 'Montserrat'; height: 50px;"/>
+                </div>
+                <div class="form-group">
+                    <input type="email" class="form-control" th:field="*{email}" placeholder="Email" style="font-size: 24px; font-family: 'Montserrat'; height: 50px;"/>
+                </div>
+                <div style="text-align: center">
+                    <button type="submit" class="btn btn-my">Submit</button>
+                </div>
+            </form>
 
+        </div>
+
+    </div>
 
 </div>
 

@@ -8,19 +8,32 @@
     <link href="/../css/bootstrap.min.css" rel="stylesheet"/>
     <link href="/../css/bootstrap-datetimepicker.css" rel="stylesheet"/>
     <style type="text/css"/>
+    <link rel="stylesheet" type="text/css" href="/../css/styles.css" />
 
 </head>
 <body>
-<div class="container">
-
-    <h1>Clients</h1>
-
-    <div class="row">
-        <div class="col-md-4"><b>Names</b></div>
-        <div class="col-md-4"><b>Contact Person</b></div>
-        <div class="col-md-4"><b>Email</b></div>
+<header>
+    <div class="container-fluid" style="background-color: #2D4464;">
+        <div class="row" style="display: flex; align-items: center;">
+            <div class="col-12 col-md-2 col-md-offset-2">
+                <a href="/../home"><img alt="logo" src="/../images/logo.png" style="margin-top: 20px; margin-bottom: 20px;"/></a>
+            </div>
+            <div class="col-12 col-md-1 col-md-offset-5">
+                <a href="/../users/logout" class="btn btn-logout">LOGOUT</a>
+            </div>
+        </div>
     </div>
-    <div clas="row" th:each="client: ${clients}">
+</header>
+<div class="container grey-background">
+
+    <h1 class="title">Clients</h1>
+
+    <div class="row" style="height: auto; display: contents;">
+        <div class="col-md-4"><b style="font-family: 'Montserrat'; font-size: 18px;">Names</b></div>
+        <div class="col-md-4"><b style="font-family: 'Montserrat'; font-size: 18px;">Contact Person</b></div>
+        <div class="col-md-4"><b style="font-family: 'Montserrat'; font-size: 18px;">Email</b></div>
+    </div>
+    <div clas="row" style="height: auto; display: contents;" th:each="client: ${clients}">
         <div class="col-md-4"><span th:text="${client.name}"></span></div>
         <div class="col-md-4"><span th:text="${client.contactPerson}"></span></div>
         <div class="col-md-4"><span th:text="${client.email}"></span></div>
